@@ -1,0 +1,80 @@
+.transactions{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    position: relative;
+    
+   
+    
+}
+.transactionsListTitle{
+    font-weight: 750;
+    margin-bottom: 35px;
+   
+    
+    
+    
+}
+.transactionsAddButton {
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(189, 168, 77);
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 50px;
+    
+   
+    
+  }
+
+  .transactionsDataGrid{
+   margin-bottom: 35px;
+    height: 70%;
+    width: 70%;
+    
+  }
+.transactionsListSuppleirs{
+    display: flex;
+    align-items: center;
+    
+}
+
+
+
+.transactionsListDelete{
+    color: red;
+    cursor: pointer;
+}
+
+.totalCell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.openWith{
+    color: green;
+    cursor: pointer;
+    margin-left: 10px;
+   
+}
+
+.editCTrans{
+    color: blue;
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: none;
+   
+}
+

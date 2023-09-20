@@ -1,0 +1,62 @@
+.administration{
+    flex: 4;
+}
+.administrationForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .administrationNote{
+    color: red;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+  .administrationItem {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  
+  .administrationItem > label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(151, 150, 150);
+  }
+  
+  .administrationItem > input {
+    height: 20px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+  
+  .administrationGender > input {
+    margin-top: 15px;
+  }
+  
+  .administrationGender>label{
+      margin: 10px;
+      font-size: 18px;
+      color: #555;
+  }
+  
+  .administrationSelect{
+      height: 40px;
+      border-radius: 5px;
+  }
+  
+  .administrationButton{
+      width: 100px;
+    border: none;
+    background-color: rgba(189, 168, 77);
+    color: white;
+    padding: 7px 10px;
+    font-weight: 600;
+    border-radius: 10px;
+    margin: 30px;
+    cursor: pointer;}

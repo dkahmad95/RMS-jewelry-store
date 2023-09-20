@@ -1,0 +1,139 @@
+.supplierTrans {
+  flex: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+ 
+}
+.transTitle {
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 30px;
+}
+.SThistoryListTitle{
+  font-weight: 750;
+  margin-bottom: 35px;
+  ;
+  
+  
+}
+.itemsName{
+  margin-top: 10px;
+}
+
+.items{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 20px;
+}
+.itemInput{
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+    .itemInput > label {
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgb(151, 150, 150);
+      }
+
+      .itemInput > input {
+        height: 20px;
+        padding: 10px;
+        border: 1px solid gray;
+        border-radius: 5px;
+      }
+      .newItemInput > span {
+        height: 20px;
+        padding: 10px;
+      }
+      .selectItem{
+        height: 30px;
+       
+        
+        border-radius: 5px;
+      }
+      
+      .itemButton{
+        width: 100px;
+        border: none;
+        background-color:  rgba(189, 168, 77);
+        color: white;
+        padding: 7px 10px;
+        font-weight: 600;
+        border-radius: 10px;
+        margin-top: 30px;
+        cursor: pointer;
+    }
+      
+
+.inputCell {
+  border: none;
+  height: 20px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.sumSupplierTransContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  
+}
+.sumLeft{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.totalRamliInput {
+  width: 400px;
+  display: flex;
+  justify-content: flex-start;
+
+  margin-top: 10px;
+  margin-right: 20px;
+}
+.ramliInput {
+  margin: 5px;
+  width: 200px;
+}
+.ramliTitle {
+  margin-left: 10px;
+}
+.sumRight {
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.totalBalanceInput {
+  width: 400px;
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 10px;
+  margin-right: 20px;
+}
+.balanceTitle {
+  margin-right: 10px;
+}
+.transButton {
+  width: 100px;
+  border: none;
+  background-color: rgba(189, 168, 77);
+  color: white;
+  padding: 7px 10px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: 30px;
+  cursor: pointer;
+}

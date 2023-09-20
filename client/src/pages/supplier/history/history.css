@@ -1,0 +1,62 @@
+
+.history{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    position: relative;
+    width: 100vw; 
+}
+.historyListTitle{
+    font-weight: 750;
+    margin-bottom: 35px;   
+}
+
+
+  .historyDataGrid{
+   margin-bottom: 35px;
+   margin-top: 35px;
+    height: 70%;
+    width: 70%;
+}
+
+.historyList{
+    margin-left: 10px;
+}
+.iconList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deletIcon{
+    color: red;
+    cursor: pointer;  
+}
+.openWithIcon{
+    color: green;
+    cursor: pointer;
+    margin-left: 10px;  
+}
+.suppleirsTransEditButton{
+    color: blue;
+    cursor: pointer;
+    margin-left: 10px; 
+}
+
+.historyAddButton{
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(189, 168, 77);
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 50px;
+}

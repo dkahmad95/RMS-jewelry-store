@@ -1,0 +1,128 @@
+.editSupplierTrans{
+    flex: 4;
+}
+
+  
+  .editSupplierTransContainer {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    max-width: 600px; 
+    margin: 20px auto; 
+  }
+  
+  .editSupplierTransContainer h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .editSupplierTransContainer p {
+    margin: 5px 0;
+    font-weight: bold;
+  }
+  .editSupplierTransContainer p.date {
+    font-size: 14px;
+    color: #888; /* Customize the color as needed */
+  }
+  
+  .inputEditSupplier {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 10px;
+  }
+  .inputEditSupplier > label {
+    color: #333;
+  }
+  .inputEditSupplier > input {
+    width: 150px;
+    margin-left: 10px;
+  }
+  .editTableSupplier {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .editTableSupplier th,
+  .editTableSupplier td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: #333;
+  }
+  
+  .editTableSupplier th {
+    background-color: #f2f2f2;
+  }
+  .editTableSupplier input {
+    width: 100px;
+    height: 20px;
+  }
+  .editTableSupplier select {
+      height: 35px;  
+      width:100px ;  
+      border-radius: 5px;
+  }
+  
+  
+  .editTableSupplier tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .editTableSupplier tr:hover {
+    background-color: #ddd;
+  }
+.buttomSecEdit{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+ 
+}
+
+/* Left Section styles (ramliSec) */
+.ramliLeftSecEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  padding: 10px;
+}
+.ramliLeframliLeftSecEdittSec > span{
+  margin: 5px;
+}
+.totalsEdit {
+  margin-bottom: 5px;
+}
+.totalsEdit> span {
+  margin: 5px;
+}
+
+/* Right Section styles (cashSec) */
+.cashRightSecEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  padding: 10px;
+}
+.cashRightSecEdit > span{
+  margin: 5px;}
+
+  .submitEditSupplier{ 
+    width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: rgba(189, 168, 77);
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  margin-right: 50px;
+  }

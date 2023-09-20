@@ -1,0 +1,102 @@
+.editCTransContainer {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px auto;
+  flex: 4;
+}
+
+.editCTransContainer h2 {
+  text-align: center;
+  color: #333;
+}
+
+.editCTransContainer p {
+  margin: 5px 0;
+  font-weight: bold;
+  color: #333;
+}
+.editCTransContainer p.date {
+  font-size: 14px;
+  color: #888; 
+}
+
+.editTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.editTable th,
+.editTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  color: #333;
+}
+
+.editTable th {
+  background-color: #f2f2f2;
+}
+.editTable input {
+  width: 100px;
+  height: 20px;
+}
+.editTable select {
+    height: 35px;  
+    width:100px ;  
+    border-radius: 5px;
+}
+
+
+.editTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.editTable tr:hover {
+  background-color: #ddd;
+}
+
+.inputEdit {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 10px;
+}
+.inputEdit > label {
+  color: #333;
+}
+.inputEdit > input {
+  width: 150px;
+  margin-left: 10px;
+}
+.totalEditInput {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 10px;
+}
+.totalEditInput > label {
+  color: #333;
+}
+.totalEditInput > input {
+  width: 150px;
+  margin-left: 10px;
+}
+
+.submitEditData {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: rgba(189, 168, 77);
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  margin-right: 50px;
+}
+
+

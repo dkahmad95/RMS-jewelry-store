@@ -1,0 +1,78 @@
+.cTransReceipt {
+   flex: 4;
+   
+  }
+  .recipteWrapper{
+    display: flex;
+    
+    flex-direction: column;
+  }
+  
+  .cTransReceiptContainer{
+     font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    max-width: 600px; 
+    margin: 20px auto; 
+  }
+  
+  .cTransReceiptContainer h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .cTransReceiptContainer p {
+    margin: 5px 0;
+    font-weight: bold;
+  }
+  .cTransReceiptContainer p.date {
+    font-size: 14px;
+    color: #888; /* Customize the color as needed */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  table tr:hover {
+    background-color: #ddd;
+  }
+
+  .printButton{
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(189, 168, 77);
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    position: absolute;
+   
+   bottom:0;
+    right: 0;
+    
+   
+    margin-bottom: 200px;
+    margin-right: 50px;
+  }

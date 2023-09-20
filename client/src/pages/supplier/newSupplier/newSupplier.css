@@ -1,0 +1,62 @@
+.newSupplier{
+    flex: 4;
+}
+.newSupplierForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .newSupplierNote{
+    color: red;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+  .newSupplierItem {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  
+  .newSupplierItem > label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(151, 150, 150);
+  }
+  
+  .newSupplierItem > input {
+    height: 20px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+  
+  .newSupplierGender > input {
+    margin-top: 15px;
+  }
+  
+  .newSupplierGender>label{
+      margin: 10px;
+      font-size: 18px;
+      color: #555;
+  }
+  
+  .newSupplierSelect{
+      height: 40px;
+      border-radius: 5px;
+  }
+  
+  .newSupplierButton{
+      width: 100px;
+    border: none;
+    background-color: rgba(189, 168, 77);
+    color: white;
+    padding: 7px 10px;
+    font-weight: 600;
+    border-radius: 10px;
+    margin: 30px;
+    cursor: pointer;}

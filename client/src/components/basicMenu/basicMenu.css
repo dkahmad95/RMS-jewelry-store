@@ -1,0 +1,8 @@
+@media screen and (max-width: 380px) {
+    .menuButton {
+      font-size: 14px;
+      font-weight: 800;
+      padding: 6px 12px;
+      color: rgba(189, 168, 77);
+    }
+  }

@@ -1,0 +1,81 @@
+.suppliers{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    position: relative;
+   
+    
+}
+.supplierListTitle{
+    font-weight: 750;
+    margin-bottom: 35px;
+   
+    
+    
+}
+.suppliersAddButton {
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: rgba(189, 168, 77);
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 50px;
+    
+   
+    
+  }
+  .listButton{
+    border: none;
+    background-color: none;
+  }
+
+  .suppliersDataGrid{
+   margin-bottom: 35px;
+    height: 70%;
+    
+  }
+.suppleirsListSuppleirs{
+    display: flex;
+    align-items: center;
+    
+}
+.suppleirsListImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+
+
+.suppleirsListHistory{
+color: black;
+   cursor: pointer;
+   margin-right: 10px;
+}
+.suppleirsListPay{
+    color: green;
+   cursor: pointer;
+   margin-right: 10px;
+}
+.suppleirsListEdit{
+    color: blue;
+   cursor: pointer;
+   margin-right: 10px;
+}
+
+.suppleirsListDelete{
+    color: red;
+    cursor: pointer;
+    margin-right: 10px;
+}
