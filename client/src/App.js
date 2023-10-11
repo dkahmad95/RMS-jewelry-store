@@ -23,9 +23,12 @@ import CustomerTransactions from "./pages/cTrans/customerTransactions/CustomerTr
 import { useSelector } from "react-redux";
 import Orbit from "./pages/orbit/Orbit";
 import Administration from "./pages/administration/Administration";
+import SupplierPayHistory from "./pages/supplier/supplierPayHistory/SupplierPayHistory";
+import SupplierPayReceipt from "./pages/supplier/supplierPayReceipt/SupplierPayReceipt";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
+  console.log(user)
   return (
     <Router>
       <Routes>
@@ -52,6 +55,8 @@ function App() {
             element={<EditSupplierTrans />}
           />
           <Route path="/supplierPay/:supplierId" element={<SupplierPay />} />
+          <Route path="/supplierPayReceipt/:supplierId" element={<SupplierPayReceipt />} />
+          <Route path="/supplierPayHistory/:supplierId" element={<SupplierPayHistory />} />
           <Route path="/newSupplier" element={<NewSupplier />} />
           <Route path="/history/:supplierId" element={<History />} />
           <Route path="/expenses" element={<Expenses />} />

@@ -13,20 +13,39 @@ router.post("/create", verifyToken, async (req, res) => {
     const saveCTrans = await newCTrans.save();
     const OverallsList = await Overalls.findOne();
     const totalCash = parseFloat(req.body.total);
-    if (saveCTrans.items[0].item == "18K") {
-      OverallsList.overall18K =
-        parseFloat(OverallsList.overall18K) - saveCTrans.items[0].weight;
-    }
-    if (saveCTrans.items[0].item == "21K") {
-      OverallsList.overall21K =
-        parseFloat(OverallsList.overall21K) - saveCTrans.items[0].weight;
-    }
+    for (let i = 0; i < saveCTrans.items.length; i++) {
+      const currentItem = saveCTrans.items[i];
 
+      switch (currentItem.item) {
+        case "18K":
+          OverallsList.overall18K -= parseFloat(currentItem.weight);
+          const transOjur18K = parseFloat(OverallsList.avgOjur18K) * parseFloat(currentItem.weight);
+          OverallsList.overallPrice18K =OverallsList.overallPrice18K - transOjur18K
+          
+          OverallsList.avgOjur18K= parseFloat( ((OverallsList.overallPrice18K)/ (OverallsList.overall18K))).toFixed(2)
+        
+          console.log("OverallsList.avgOjur18K",OverallsList.avgOjur18K)
+          break;
+        case "21K":
+          OverallsList.overall21K -= parseFloat(currentItem.weight);
+          const transOjur21K = parseFloat(OverallsList.avgOjur21K) * parseFloat(currentItem.weight);
+          OverallsList.overallPrice21K =OverallsList.overallPrice21K - transOjur21K
+          
+          OverallsList.avgOjur21K= parseFloat( ((OverallsList.overallPrice21K)/ (OverallsList.overall21K))).toFixed(2)
+        
+          console.log("OverallsList.avgOjur21K",OverallsList.avgOjur21K)
+          break;
+        case "24K":
+          OverallsList.overall24K -= parseFloat(currentItem.weight);
+          break;
+        case "Silver":
+          OverallsList.overallSilver -= parseFloat(currentItem.weight);
+          break;
+      }
+    }
     OverallsList.overallCash = parseFloat(OverallsList.overallCash) + totalCash;
 
-    // for (const item of OverallsList) {
-    //   await item.save();
-    // }
+ 
 
     await OverallsList.save();
 
@@ -75,32 +94,45 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
     if (!deletedCTrans) {
       return res.status(404).json({ error: "CTrans document not found" });
     }
-    const OverallsList = await Overalls.find();
+    const OverallsList = await Overalls.findOne();
     const totalCash = parseFloat(deletedCTrans.total);
 
-    OverallsList.forEach((item) => {
-      item.overallCash = parseFloat(item.overallCash) - totalCash;
-    });
-    console.log("item", deletedCTrans.items[0].item);
-    console.log("weight", deletedCTrans.items[0].weight);
-    if (deletedCTrans.items[0].item == "18K") {
-      OverallsList.forEach(
-        (item) =>
-          (item.overall18K =
-            parseFloat(item.overall18K) + deletedCTrans.items[0].weight)
-      );
-    }
-    if (deletedCTrans.items[0].item == "21K") {
-      OverallsList.forEach(
-        (item) =>
-          (item.overall21K =
-            parseFloat(item.overall21K) + deletedCTrans.items[0].weight)
-      );
+    OverallsList.overallCash = parseFloat(OverallsList.overallCash) - totalCash;
+
+    for (let i = 0; i < deletedCTrans.items.length; i++) {
+      const currentItem = deletedCTrans.items[i];
+
+      switch (currentItem.item) {
+        case "18K":
+          OverallsList.overall18K += parseFloat(currentItem.weight);
+          const transOjur18K = parseFloat(OverallsList.avgOjur18K) * parseFloat(currentItem.weight);
+          OverallsList.overallPrice18K =OverallsList.overallPrice18K - transOjur18K
+          
+          OverallsList.avgOjur18K= parseFloat( ((OverallsList.overallPrice18K)/ (OverallsList.overall18K))).toFixed(2)
+        
+          console.log("OverallsList.avgOjur18K",OverallsList.avgOjur18K)
+          break;
+        case "21K":
+          OverallsList.overall21K += parseFloat(currentItem.weight);
+          const transOjur21K = parseFloat(OverallsList.avgOjur21K) * parseFloat(currentItem.weight);
+          OverallsList.overallPrice21K =OverallsList.overallPrice21K - transOjur21K
+          
+          OverallsList.avgOjur21K= parseFloat( ((OverallsList.overallPrice21K)/ (OverallsList.overall21K))).toFixed(2)
+        
+          console.log("OverallsList.avgOjur21K",OverallsList.avgOjur21K)
+          break;
+        case "24K":
+          OverallsList.overall24K += parseFloat(currentItem.weight);
+          break;
+        case "Silver":
+          OverallsList.overallSilver += parseFloat(currentItem.weight);
+          break;
+      }
+      console.log("item", currentItem.item);
+      console.log("weight", currentItem.weight);
     }
 
-    for (const item of OverallsList) {
-      await item.save();
-    }
+    await OverallsList.save();
 
     res.status(200).json("The CTrans has been deleted");
   } catch (err) {
@@ -116,6 +148,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
     const updatedData = req.body;
     const cTrans = await CTrans.findById(req.params.id);
     const oldTotal = cTrans.total;
+
     const updatedCTrans = await CTrans.findByIdAndUpdate(
       id,
       {
@@ -128,16 +161,57 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
     if (!updatedCTrans) {
       return res.status(404).json({ error: "CTrans document not found" });
     }
-    const OverallsList = await Overalls.find();
+    const OverallsList = await Overalls.findOne();
+
+    for (
+      let i = 0;
+      i < cTrans.items.length && i < updatedCTrans.items.length;
+      i++
+    ) {
+      const oldItem = cTrans.items[i];
+      const updatedItem = updatedCTrans.items[i];
+
+      if (oldItem.item === "18K" && updatedItem.item === "18K") {
+        OverallsList.overall18K =
+          (parseFloat(OverallsList.overall18K) -
+          parseFloat(oldItem.weight)) +
+          parseFloat(updatedItem.weight);
+          const transOjur18K = parseFloat(OverallsList.avgOjur18K) * parseFloat(updatedItem.weight);
+          OverallsList.overallPrice18K =OverallsList.overallPrice18K + transOjur18K
+          
+          OverallsList.avgOjur18K= parseFloat( ((OverallsList.overallPrice18K)/ (OverallsList.overall18K))).toFixed(2)
+        
+          console.log("OverallsList.avgOjur18K",OverallsList.avgOjur18K)
+      } else if (oldItem.item === "21K" && updatedItem.item === "21K") {
+        OverallsList.overall21K =
+         ( parseFloat(OverallsList.overall21K) -
+          parseFloat(oldItem.weight)) +
+          parseFloat(updatedItem.weight);
+          const transOjur21K = parseFloat(OverallsList.avgOjur21K) * parseFloat(updatedItem.weight);
+          OverallsList.overallPrice21K =OverallsList.overallPrice21K + transOjur21K
+          
+          OverallsList.avgOjur21K= parseFloat( ((OverallsList.overallPrice21K)/ (OverallsList.overall21K))).toFixed(2)
+        
+          console.log("OverallsList.avgOjur21K",OverallsList.avgOjur21K)
+      } else if (oldItem.item === "24K" && updatedItem.item === "24K") {
+        OverallsList.overall24K =
+          (parseFloat(OverallsList.overall24K) -
+          parseFloat(oldItem.weight)) +
+          parseFloat(updatedItem.weight);
+      } else if (oldItem.item === "Silver" && updatedItem.item === "Silver") {
+        OverallsList.silver =
+          (parseFloat(OverallsList.silver) -
+          parseFloat(oldItem.weight)) +
+          parseFloat(updatedItem.weight);
+      }
+    }
+
     const totalCash = parseFloat(updatedCTrans.total);
 
-    OverallsList.forEach((item) => {
-      item.overallCash = parseFloat(item.overallCash) - oldTotal + totalCash;
-    });
+    OverallsList.overallCash =
+      parseFloat(OverallsList.overallCash) - oldTotal + totalCash;
 
-    for (const item of OverallsList) {
-      await item.save();
-    }
+    await OverallsList.save();
 
     res.status(200).json(updatedCTrans);
   } catch (err) {
@@ -148,7 +222,6 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 // GET MONTHLY INCOME
 
 router.get("/income", verifyTokenAndAdmin, async (req, res) => {
-  
   let firstOfTheYear = new Date();
   firstOfTheYear.setMonth(0, 1);
 

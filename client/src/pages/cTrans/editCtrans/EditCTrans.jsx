@@ -125,6 +125,7 @@ const EditCTrans = () => {
                   >
                     <option value="18K">18K</option>
                     <option value="21K">21K</option>
+                    <option value="24K">24K</option>
                     <option value="Silver">Silver</option>
                     <option value="Watch">Watch</option>
                   </select>

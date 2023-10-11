@@ -45,7 +45,7 @@ const SupplierTrans = () => {
         sum += quantity;
       }
     });
-    setTotal(sum);
+    setTotal((sum).toFixed(2));
   }, [items]);
 
   const total18KWeight = useMemo(() => {
@@ -72,6 +72,71 @@ const SupplierTrans = () => {
     return total21KWeight.toFixed(2);
   }, [items]);
 
+
+  const total24KWeight = useMemo(() => {
+    let total24KWeight = 0;
+    for (const item of items) {
+      const weight = parseFloat(item.weight);
+
+      if (!isNaN(weight) && item.item === "24K") {
+        total24KWeight += weight;
+      }
+    }
+    return total24KWeight.toFixed(2);
+  }, [items]);
+
+  const silverWeight = useMemo(() => {
+    let silverWeight = 0;
+    for (const item of items) {
+      const total = parseFloat(item.weight);
+
+      if (!isNaN(total) && item.item === "Silver") {
+        silverWeight += total;
+      }
+    }
+    return silverWeight.toFixed(2);
+  }, [items]);
+
+  
+  const total18K = useMemo(() => {
+    let total18K = 0;
+    for (const item of items) {
+      const total = parseFloat(item.weight)* parseFloat(item.unitPrice);
+
+      if (!isNaN(total) && item.item === "18K") {
+        total18K += total;
+      }
+    }
+    return total18K.toFixed(2);
+  }, [items]);
+
+  const total21K = useMemo(() => {
+    let total21K = 0;
+    for (const item of items) {
+      const total = parseFloat(item.weight)* parseFloat(item.unitPrice);
+
+      if (!isNaN(total) && item.item === "21K") {
+        total21K += total;
+      }
+    }
+    return total21K.toFixed(2);
+  }, [items]);
+
+
+  const total24K = useMemo(() => {
+    let total24K = 0;
+    for (const item of items) {
+      const total = parseFloat(item.weight)* parseFloat(item.unitPrice);
+
+      if (!isNaN(total) && item.item === "24K") {
+        total24K += total;
+      }
+    }
+    return total24K.toFixed(2);
+  }, [items]);
+
+
+
   const w18KtoRamli = useMemo(() => {
     return ((total18KWeight * 750) / 995).toFixed(2);
   }, [total18KWeight]);
@@ -79,19 +144,19 @@ const SupplierTrans = () => {
   const w21KtoRamli = useMemo(() => {
     return ((total21KWeight * 875) / 995).toFixed(2);
   }, [total21KWeight]);
+  
 
   const ramliTotal = useMemo(() => {
-    return (parseFloat(w18KtoRamli) + parseFloat(w21KtoRamli)).toFixed(2);
-  }, [w18KtoRamli, w21KtoRamli]);
+    return (parseFloat(w18KtoRamli) + parseFloat(w21KtoRamli)+ parseFloat(total24KWeight)).toFixed(2);
+  }, [w18KtoRamli, w21KtoRamli,total24KWeight]);
 
   const ramliFinalBal = useMemo(() => {
-    return( parseFloat(ramliOldBal) + parseFloat(ramliTotal)).toFixed(2);;
+    return( parseFloat(ramliOldBal) + parseFloat(ramliTotal)).toFixed(2);
   }, [ramliOldBal, ramliTotal]);
 
   const finalBalance = useMemo(() => {
     return (parseFloat(cashOldBal) + parseFloat(total)).toFixed(2);
   }, [cashOldBal, total]);
-  console.log(finalBalance)
 
   useEffect(() => {
     calculateTotal();
@@ -102,22 +167,20 @@ const SupplierTrans = () => {
     const ramliSec = {
       total18KWeight,
       total21KWeight,
+      total24KWeight,
       w18KtoRamli,
       w21KtoRamli,
       ramliTotal,
       ramliOldBal,
       ramliFinalBal,
     };
-    console.log(ramliSec);
-    console.log(items);
     const cashTotal = total;
-
+    
+    const totalSilver = silverWeight
     const cashFinalBal = finalBalance;
-    const cashSec = { cashTotal, cashOldBal, cashFinalBal };
-    console.log(cashSec);
-    const sTrans = { items, ramliSec, cashSec };
+    const cashSec = { total18K,total21K,total24K,cashTotal, cashOldBal, cashFinalBal };
+    const sTrans = { items, ramliSec, cashSec ,totalSilver};
     const newSupplierTrans = { supplierId, sTrans };
-    console.log(newSupplierTrans);
 
     const newFinalBalAndRamli = {ramliFinalBal,cashFinalBal}
 
@@ -148,6 +211,7 @@ const SupplierTrans = () => {
                 >
                   <option value="18K">18K</option>
                   <option value="21K">21K</option>
+                  <option value="24K">24K</option>
                   <option value="Silver">Silver</option>
                   <option value="Watch">Watch</option>
                 </select>
@@ -206,15 +270,22 @@ const SupplierTrans = () => {
             <span className="ramliInput">
               Total-21K: <b>{total21KWeight} g</b>
             </span>
+            
           </div>
           <div className="totalRamliInput">
             <span className="ramliInput">
               {" "}
-              18k ramli: <b>{w18KtoRamli} g</b>
+              18k to ramli: <b>{w18KtoRamli} g</b>
             </span>
             <span className="ramliInput">
               {" "}
-              21k ramli: <b>{w21KtoRamli} g</b>
+              21k to ramli: <b>{w21KtoRamli} g</b>
+            </span>
+          </div>
+          <div className="totalRamliInput">
+            
+            <span className="ramliInput">
+              24K-Ramli: <b>{total24KWeight} g</b>
             </span>
           </div>
           <div className="totalRamliInput">
@@ -234,6 +305,18 @@ const SupplierTrans = () => {
           </div>
         </div>
         <div className="sumRight">
+          <div className="totalBalanceInput">
+            
+            <span className="balanceTitle">
+              Total 18K: <b>$ {total18K}</b>
+            </span>
+            <span className="balanceTitle">
+              Total 21K: <b>$ {total21K}</b>
+            </span>
+            <span className="balanceTitle">
+              Total 24K: <b>$ {total24K}</b>
+            </span>
+          </div>
           <div className="totalBalanceInput">
             <span className="balanceTitle">
               Total: <b>$ {total}</b>

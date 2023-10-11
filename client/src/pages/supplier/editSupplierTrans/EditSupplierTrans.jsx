@@ -1,9 +1,10 @@
 import "./editSupplierTrans.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   getOneSupplierTrans,
   getSuppliers,
+  updateSupplier,
   updateSupplierTrans,
 } from "../../../redux/apiCalls";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -22,6 +23,8 @@ const EditSupplierTrans = () => {
  
 
   const suppliers = useSelector((state) => state.suppliers.suppliers);
+  const oneSupplier = useSelector((state) => state.suppliers.oneSupplier);
+  const oneSupplierId =  oneSupplier._id
  
 
   useEffect(() => {
@@ -47,6 +50,19 @@ const EditSupplierTrans = () => {
   };
   const supplierItems = extractSupplierItems(supplierTrans);
   const [items, setItems] = useState(supplierItems);
+// calculate the silver weights
+  const silverWeight = useMemo(() => {
+    let silverWeight = 0;
+    for (const item of items) {
+      const total = parseFloat(item.weight);
+
+      if (!isNaN(total) && item.item === "Silver") {
+        silverWeight += total;
+      }
+    }
+    return silverWeight.toFixed(2);
+  }, [items]);
+
 
   // Function to handle Items changes and update the state
   const handleEditItems = (e, index) => {
@@ -98,13 +114,20 @@ const EditSupplierTrans = () => {
     });
   };
   console.log("CashSec", cashSec);
-
+  console.log("ramliSec", ramliSec);
+  const ramliFinalBal =  ramliSec[0].ramliFinalBal
+  const cashFinalBal = cashSec[0].cashFinalBal
+  const newRamliCashFinal = {ramliFinalBal,cashFinalBal}
+  console.log('newRamliCashFinal',newRamliCashFinal)
+  console.log('ramliFinalBal',ramliFinalBal)
   const handleSubmit = (e) => {
     e.preventDefault();
-    const sTrans = { items, ramliSec, cashSec };
+    const totalSilver = silverWeight
+    const sTrans = { items, ramliSec, cashSec ,totalSilver };
     const newSupplierTrans = { sTrans };
     console.log(newSupplierTrans);
     dispatch(updateSupplierTrans(newSupplierTrans, sTransId));
+    dispatch(updateSupplier(newRamliCashFinal,oneSupplierId))
     // const newCTrans = { customername, phone, items, total };
     // dispatch(updateCTrans(newCTrans, cTransId));
     navigate("/history/"+ sTransId );
@@ -113,6 +136,8 @@ const EditSupplierTrans = () => {
   const date = new Date(supplierTrans.createdAt);
   const formattedDate = format(date, "dd/MM/yyyy");
   //   console.log("formattedDate", formattedDate);
+
+  console.log("supplierCashSec",supplierCashSec)
 
   return (
     <div className="editSupplierTrans">
@@ -153,6 +178,7 @@ const EditSupplierTrans = () => {
                       >
                         <option value="18K">18K</option>
                         <option value="21K">21K</option>
+                        <option value="24K">24K</option>
                         <option value="Silver">Silver</option>
                         <option value="Watch">Watch</option>
                       </select>
@@ -222,6 +248,15 @@ const EditSupplierTrans = () => {
                         onChange={handleEditramliSec}
                       />
                     </div>
+                    <div className="inputEdit">
+                      <label htmlFor="">24k: </label>
+                      <input
+                        type="text"
+                        name="total24KWeight"
+                        placeholder={item.total24KWeight}
+                        onChange={handleEditramliSec}
+                      />
+                    </div>
                   </div>
                   <div className="inputEdit">
                     <label htmlFor="">Ramli Total: </label>
@@ -257,6 +292,33 @@ const EditSupplierTrans = () => {
             <div className="cashRightSecEdit">
               {supplierCashSec.map((item) => (
                 <>
+                  <div className="inputEdit">
+                    <label htmlFor="">Total Price 18K: </label>
+                    <input
+                      type="text"
+                      name="total18K"
+                      placeholder={item.total18K}
+                      onChange={handleEditCashSec}
+                    />
+                  </div>
+                  <div className="inputEdit">
+                    <label htmlFor="">Total Price 21K: </label>
+                    <input
+                      type="text"
+                      name="total21K"
+                      placeholder={item.total21K}
+                      onChange={handleEditCashSec}
+                    />
+                  </div>
+                  <div className="inputEdit">
+                    <label htmlFor="">Total Price 24K: </label>
+                    <input
+                      type="text"
+                      name="total24K"
+                      placeholder={item.total24K}
+                      onChange={handleEditCashSec}
+                    />
+                  </div>
                   <div className="inputEdit">
                     <label htmlFor="">Total: </label>
                     <input

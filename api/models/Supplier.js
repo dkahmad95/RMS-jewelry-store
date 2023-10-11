@@ -14,12 +14,12 @@ const supplierSchema = new mongoose.Schema(
     },
 
     cashFinalBal: {
-      type: Number,
+      type: String,
       required: true,
       default:0
     },
     ramliFinalBal: {
-      type: Number,
+      type: String,
       required: true,
       default:0
     },

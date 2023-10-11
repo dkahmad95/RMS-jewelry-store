@@ -3,7 +3,7 @@ import "./topbar.css";
 import { useDispatch } from "react-redux";
 import { logout } from '../../redux/userRedux';
 import { useNavigate } from "react-router-dom";
-import BasicMenu from "../basicMenu/mobileMenu";
+// import BasicMenu from "../basicMenu/mobileMenu";
 import {BasicModal} from "../modal/Modal";
 
 
@@ -18,8 +18,8 @@ export default function Topbar() {
     navigat("/login")
     
   };
-  const isMobile = window.innerWidth <= 380; 
-  console.log(isMobile);
+  // const isMobile = window.innerWidth <= 380; 
+  
   return (
     <div className="topbar">
       <div className="topbarWrapper">

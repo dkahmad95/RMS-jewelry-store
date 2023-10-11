@@ -1,0 +1,77 @@
+
+.supplierPayReceipt{
+    flex: 4;
+}
+
+.supplierPayReceiptContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #000;
+    justify-content: space-between
+  }
+  
+  .receiptsupplierPayTitle {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .receiptsupplierPayContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .receiptsupplierPayLeft,
+  .receiptsupplierPayRight {
+    flex:1 ;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .receiptleftContent,
+  .receiptrightContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .receiptleftContent > label,
+  .receiptrightContent > label {
+    font-weight: bold;
+  }
+  
+  .receiptleftContent > span,
+  .receiptrightContent > span {
+    flex: 1;
+    height: 20px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .receiptmiddlediv {
+  
+   
+ 
+    margin: 10px;
+  }
+
+  
+  .receiptpaymentContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+ 
+  
+  .receiptpaymentContainer span {
+    font-weight: bold;
+     margin-right: 10px;
+  }

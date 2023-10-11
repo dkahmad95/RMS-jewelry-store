@@ -4,6 +4,7 @@ import "./home.css";
 
 import { useEffect, useMemo, useState } from "react";
 import { userRequest } from "../../requestMethodes";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const [income, setIncome] = useState([]);
@@ -96,12 +97,15 @@ console.log("mergedData",mergedData);
   
  console.log("Monthly Expenses", expenses)
  console.log("Monthly Sales", income)
+ const isAdmin= useSelector((state)=>state.user.currentUser.isAdmin)
+
   return (
     <div className="home">
       
       <FeaturedInfo />
-      
+      {isAdmin &&
       <Chart data={mergedData} title="Sales Analytics" gird dataKeys={dataKeys} />
+      }
       
     </div>
   );

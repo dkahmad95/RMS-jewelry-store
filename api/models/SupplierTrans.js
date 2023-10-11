@@ -30,12 +30,16 @@ const supplierTransSchema = new mongoose.Schema(
             total21KWeight: {
               type: Number,
             },
+            total24KWeight: {
+              type: Number,
+            },
             w18KtoRamli: {
               type: Number,
             },
             w21KtoRamli: {
               type: Number,
             },
+          
             ramliTotal: {
               type: Number,
             },
@@ -49,6 +53,15 @@ const supplierTransSchema = new mongoose.Schema(
         ],
         cashSec: [
           {
+            total18K: {
+              type: Number,
+            },
+            total21K: {
+              type: Number,
+            },
+            total24K: {
+              type: Number,
+            },
             cashTotal: {
               type: Number,
             },
@@ -60,6 +73,11 @@ const supplierTransSchema = new mongoose.Schema(
             },
           },
         ],
+
+        totalSilver: {
+          type: Number,
+
+        }
       },
     ],
   },

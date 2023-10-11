@@ -2,10 +2,11 @@ import { publicRequest, userRequest } from "../requestMethodes";
 import {  addCTransFailure, addCTransStart, addCTransSuccess, deleteCTransFailure, deleteCTransStart, deleteCTransSuccess, getCTransFailure, getCTransStart, getCTransSuccess, updateCTransFailure, updateCTransStart, updateCTransSuccess } from "./cTransRedux";
 import { loginFailure, loginStart, loginSuccess } from "./userRedux";
 import { addSuppliersFailure, addSuppliersStart, addSuppliersSuccess, deleteSuppliersStart, deleteSuppliersFailure, getSuppliersFailure, getSuppliersStart, getSuppliersSuccess, deleteSuppliersSuccess, getOneSupplierStart, getOneSupplierSuccess, getOneSupplierFailure } from "./suppliersRedux";
-import { addSupplierTransFailure, addSupplierTransStart, addSupplierTransSuccess, deleteSupplierTransFailure, deleteSupplierTransStart, deleteSupplierTransSuccess, getOneSupplierTransFailure, getOneSupplierTransStart, getOneSupplierTransSuccess, getSupplierTransFailure, getSupplierTransStart, getSupplierTransSuccess } from "./supplierTransRedux";
+import { addSupplierTransFailure, addSupplierTransStart, addSupplierTransSuccess, deleteSupplierTransFailure, deleteSupplierTransStart, deleteSupplierTransSuccess, getOneSupplierTransFailure, getOneSupplierTransStart, getOneSupplierTransSuccess, getSupplierTransFailure, getSupplierTransStart, getSupplierTransSuccess, updateSupplierTransFailure, updateSupplierTransStart, updateSupplierTransSuccess } from "./supplierTransRedux";
 
 import { addExpensesFailure, addExpensesStart, addExpensesSuccess, deleteExpensesFailure, deleteExpensesStart, deleteExpensesSuccess, getExpensesFailure, getExpensesStart, getExpensesSuccess, updateExpensesFailure, updateExpensesStart, updateExpensesSuccess } from "./expensesRedux";
 import { addOverallFailure, addOverallStart, addOverallSuccess, deleteOverallFailure, deleteOverallStart, deleteOverallSuccess, getOverallFailure, getOverallStart, getOverallSuccess, updateOverallFailure, updateOverallStart, updateOverallSuccess } from "./overallRedux";
+import { addSupplierPayFailure, addSupplierPayStart, addSupplierPaySuccess, deleteSupplierPayFailure, deleteSupplierPayStart, deleteSupplierPaySuccess, getOneSupplierPayFailure, getOneSupplierPayStart, getOneSupplierPaySuccess, getSupplierPayFailure, getSupplierPayStart, getSupplierPaySuccess, updateSupplierPayFailure, updateSupplierPayStart, updateSupplierPaySuccess } from "./supplierPayRedux";
 
 
 // LOGIN
@@ -207,13 +208,13 @@ export const getOneSupplierTrans = async (dispatch, id) => {
 //update supplierTrans using Thunk
 export const updateSupplierTrans = (newSupplierTrans, id) => {
   return async (dispatch) => {
-    dispatch(updateCTransStart());
+    dispatch(updateSupplierTransStart());
     try {
       const res = await userRequest.put(`/supplierTrans/${id}`, newSupplierTrans);
 
-      dispatch(updateCTransSuccess(res.data));
+      dispatch(updateSupplierTransSuccess(res.data));
     } catch (err) {
-      dispatch(updateCTransFailure(err));
+      dispatch(updateSupplierTransFailure(err));
     }
   };
 };
@@ -331,3 +332,64 @@ export const updateOverall = (newOverall, id) => {
 };
 
 
+
+
+//SupplierPay APIs
+
+// get all SupplierPay
+export const getSupplierPay = async (dispatch, id) => {
+  dispatch(getSupplierPayStart());
+  try {
+    const res = await publicRequest.get(`/SupplierPay/supplier/${id}`);
+    dispatch(getSupplierPaySuccess(res.data));
+  } catch (err) {
+    dispatch(getSupplierPayFailure());
+  }
+};
+
+// add one SupplierPay
+export const addSupplierPay = async (dispatch , newSupplierPay) => {
+  dispatch(addSupplierPayStart());
+  try {
+    const res = await userRequest.post(`/SupplierPay/create` , newSupplierPay);
+    dispatch(addSupplierPaySuccess(res.data));
+  } catch (err) {
+    dispatch(addSupplierPayFailure());
+  }
+};
+
+// delete one SupplierPay
+export const deleteSupplierPay = async (dispatch,id) => {
+  dispatch(deleteSupplierPayStart());
+  try {
+     await userRequest.delete(`/SupplierPay/${id}`);
+    dispatch(deleteSupplierPaySuccess(id));
+  } catch (err) {
+    dispatch(deleteSupplierPayFailure());
+  }
+};
+
+// get one SupplierPay
+export const getOneSupplierPay = async (dispatch, id) => {
+  dispatch(getOneSupplierPayStart());
+  try {
+    const res = await publicRequest.get(`/SupplierPay/pay/${id}`);
+    dispatch(getOneSupplierPaySuccess(res.data));
+  } catch (err) {
+    dispatch(getOneSupplierPayFailure());
+  }
+};
+
+//update SupplierPay using Thunk
+export const updateSupplierPay = (newSupplierPay, id) => {
+  return async (dispatch) => {
+    dispatch(updateSupplierPayStart());
+    try {
+      const res = await userRequest.put(`/SupplierPay/${id}`, newSupplierPay);
+
+      dispatch(updateSupplierPaySuccess(res.data));
+    } catch (err) {
+      dispatch(updateSupplierPayFailure(err));
+    }
+  };
+};

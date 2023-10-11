@@ -13,22 +13,22 @@ const SupplierTransReceipt = () => {
   const location = useLocation();
   const sTransId = location.pathname.split("/")[2];
 
- 
   const supplierOneTrans = useSelector(
     (state) => state.supplierTrans.supplierOneTrans
   );
+  console.log("supplierOneTrans", supplierOneTrans)
 
-  const suppliers = useSelector((state) => state.suppliers.suppliers);
+  const suppliers = useSelector((state) => state.suppliers.oneSupplier);
 
   useEffect(() => {
     getOneSupplierTrans(dispatch, sTransId);
     getSuppliers(dispatch);
-  }, [dispatch,sTransId]);
+  }, [dispatch, sTransId]);
 
   const supplierId = supplierOneTrans.supplierId;
 
-  // get supplierInfo by its id
-  const supplierInfo = suppliers.find((id) => id._id === supplierId);
+  // // get supplierInfo by its id
+  // const supplierInfo = suppliers.find((id) => id._id === supplierId);
 
   // EXTRACT ITEMS FROM STRANS
   const extractSupplierItems = (supplierTrans) => {
@@ -47,6 +47,7 @@ const SupplierTransReceipt = () => {
     return [];
   };
   const supplierRamliSec = extractSupplierRamliSec(supplierOneTrans);
+  
 
   // EXTRACT CashSec FROM STRANS
   const extractSupplierCashSec = (supplierTrans) => {
@@ -68,8 +69,8 @@ const SupplierTransReceipt = () => {
         <div className="receiptItems">
           <h2>Hajj-Ali Jewelry</h2>
           <p>Date: {formattedDate} </p>
-          <p>Supplier Name: {supplierInfo.suppliername} </p>
-          <p>Phone Number: {supplierInfo.phone} </p>
+          <p>Supplier Name: {suppliers.suppliername} </p>
+          <p>Phone Number: {suppliers.phone} </p>
           <table>
             <thead>
               <tr>
@@ -90,12 +91,10 @@ const SupplierTransReceipt = () => {
               ))}
             </tbody>
           </table>
-          
         </div>
         <div className="buttomSec">
           <div className="ramliLeftSec">
             {supplierRamliSec.map((item) => (
-              
               <>
                 <div className="totals">
                   <span>
@@ -114,17 +113,19 @@ const SupplierTransReceipt = () => {
                     <b>21k ramli:</b> {item.w21KtoRamli} g
                   </span>
                 </div>
-
                 <span>
-                 <b> Ramli Total:</b> {item.ramliTotal} g
+                  <b>24k:</b> {item.total24KWeight} g
+                </span>
+                <span>
+                  <b> Ramli Total:</b> {item.ramliTotal} g
                 </span>
 
                 <span>
-                <b> Ramli Old Balance:</b> {item.ramliOldBal} g
+                  <b> Ramli Old Balance:</b> {(item.ramliOldBal).toFixed(2)} g
                 </span>
 
                 <span>
-                <b> Ramli Final Balance:</b> {item.ramliFinalBal} g
+                  <b> Ramli Final Balance:</b> {item.ramliFinalBal} g
                 </span>
               </>
             ))}
@@ -134,11 +135,20 @@ const SupplierTransReceipt = () => {
             {supplierCashSec.map((item) => (
               <>
                 <span>
+                  <b>Total 18K:</b> $ {item.total18K}
+                </span>
+                <span>
+                  <b>Total 21K:</b> $ {item.total21K}
+                </span>
+                <span>
+                  <b>Total 24K:</b> $ {item.total24K}
+                </span>
+                <span>
                   <b>Total:</b> $ {item.cashTotal}
                 </span>
 
                 <span>
-                   <b>Old Balance:</b> $ {item.cashOldBal} 
+                  <b>Old Balance:</b> $ {item.cashOldBal}
                 </span>
 
                 <span>
@@ -150,10 +160,9 @@ const SupplierTransReceipt = () => {
         </div>
       </div>
       <ReactToPrint
-                trigger={() => (
-                  <button className="printButton">Print this out!</button>
-                )}
-                content={() => componentRef.current}/>
+        trigger={() => <button className="printButton">Print this out!</button>}
+        content={() => componentRef.current}
+      />
     </div>
   );
 };

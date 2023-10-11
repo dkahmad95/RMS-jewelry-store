@@ -5,6 +5,7 @@ import suppliersReducer from "./suppliersRedux";
 import supplierTransReducer from "./supplierTransRedux";
 import expensesReducer from "./expensesRedux";
 import overallReducer from "./overallRedux";
+import supplierPayReducer from "./supplierPayRedux";
 import thunk from 'redux-thunk';
 
 import {
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
   suppliers: suppliersReducer,
   supplierTrans : supplierTransReducer,
   expenses: expensesReducer,
-  overall: overallReducer
+  overall: overallReducer,
+  supplierPay: supplierPayReducer
  
 });
 

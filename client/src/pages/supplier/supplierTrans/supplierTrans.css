@@ -92,6 +92,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 600px;
 }
 .totalRamliInput {
   width: 400px;
@@ -106,7 +107,7 @@
   width: 200px;
 }
 .ramliTitle {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 .sumRight {
   margin-right: 10px;
@@ -114,6 +115,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  
 }
 .totalBalanceInput {
   width: 400px;

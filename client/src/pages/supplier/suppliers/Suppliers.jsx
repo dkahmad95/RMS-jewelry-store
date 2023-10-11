@@ -11,6 +11,7 @@ import React, { useEffect } from "react";
 import {
   deleteSupplier,
   getOneSupplier,
+  getSupplierPay,
   getSupplierTrans,
   getSuppliers,
 } from "../../../redux/apiCalls";
@@ -22,8 +23,10 @@ const Suppliers = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const suppliers = useSelector((state) => state.suppliers.suppliers);
+  console.log(suppliers)
   const [open, setOpen] = React.useState(false);
   const isAdmin= useSelector((state)=>state.user.currentUser.isAdmin)
+  console.log(suppliers)
 
   useEffect(() => {
     getSuppliers(dispatch);
@@ -68,7 +71,7 @@ const Suppliers = () => {
 
       width: 150,
       renderCell: (params) => {
-        return <div>{params.row.ramliFinalBal} g</div>;
+        return <div>{Number(params.row.ramliFinalBal).toFixed(2)} g</div>;
       },
     },
     {
@@ -77,7 +80,7 @@ const Suppliers = () => {
 
       width: 150,
       renderCell: (params) => {
-        return <div>$ {params.row.cashFinalBal}</div>;
+        return <div>$ {Number(params.row.cashFinalBal).toFixed(2)}</div>;
       },
     },
 
@@ -98,8 +101,14 @@ const Suppliers = () => {
                 }} className="suppleirsListHistory" />
               
 
-              <Link to={"/supplierPay/" + params.row._id}>
-                <AttachMoney className="suppleirsListPay" />
+              <Link to={"/supplierPayHistory/" + params.row._id}>
+                <AttachMoney className="suppleirsListPay" 
+                onClick={async () => {
+                  await getSupplierPay(dispatch, params.row._id);
+                  await getOneSupplier(dispatch,params.row._id )
+                  navigate("/supplierPayHistory/" + params.row._id);
+                }}
+                />
               </Link>
                 {isAdmin &&
                 <>

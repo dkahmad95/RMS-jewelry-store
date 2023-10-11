@@ -12,11 +12,11 @@ import { useSelector } from "react-redux";
 
 export default function Sidebar() {
   const isAdmin= useSelector((state)=>state.user.currentUser.isAdmin)
-  console.log(isAdmin)
+  
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-        {isAdmin && 
+        
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
@@ -34,7 +34,7 @@ export default function Sidebar() {
             </Link>
           </ul>
         </div>
-        }
+      
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">

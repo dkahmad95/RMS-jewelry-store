@@ -2,16 +2,20 @@ import "./history.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { Edit, OpenWith } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { format } from "date-fns";
+import { getOneSupplier, getOneSupplierTrans } from "../../../redux/apiCalls";
 
 const History = () => {
+  const dispatch = useDispatch();
   const isAdmin = useSelector((state) => state.user.currentUser.isAdmin);
   const supplierTrans = useSelector(
     (state) => state.supplierTrans.supplierTrans
   );
+  console.log(supplierTrans)
   const suppliers = useSelector((state) => state.suppliers.oneSupplier);
+
   const supplierId = suppliers._id;
   const columns = [
     {
@@ -103,7 +107,13 @@ const History = () => {
         />
       </div>
       <Link to={"/supplierTrans/" + supplierId}>
-        <button className="historyAddButton">Add</button>
+        <button 
+        onClick ={
+          ()=>{
+            getOneSupplierTrans(dispatch, supplierId);
+          }
+        }
+        className="historyAddButton">Add</button>
       </Link>
     </div>
   );
