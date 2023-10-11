@@ -128,6 +128,7 @@ const Expenses = () => {
                   <option value="donation">Donation</option>
                   <option value="socialMedia">Social Media</option>
                   <option value="food&beverage">Food & Beverage</option>
+                  <option value="withdrawals">Withdrawals</option>
                   <option value="others">others</option>
                 </select>
               </div>
