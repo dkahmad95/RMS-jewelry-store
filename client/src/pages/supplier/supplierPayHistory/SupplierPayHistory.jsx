@@ -51,7 +51,7 @@ const SupplierPayHistory = () => {
   
     {
       field: "totalRamli",
-      headerName: "totalRamli",
+      headerName: "Ramli Payment",
 
       width: 150,
       renderCell: (params) => {
@@ -60,7 +60,7 @@ const SupplierPayHistory = () => {
     },
     {
       field: "cashPayment",
-      headerName: "cashPayment",
+      headerName: "Cash Payment",
 
       width: 150,
       renderCell: (params) => {
